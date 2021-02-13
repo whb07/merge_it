@@ -29,6 +29,7 @@ fn merge<'a, T: Copy + PartialOrd>(left: &'a [T], right: &'a [T]) -> Vec<T> {
 
 pub fn mergesort<T: Copy + PartialOrd>(list: &mut [T]) {
     let length = list.len();
+    // a sorted list is defined as the case of [] | [T]
     if length <= 1 {
         return;
     }
@@ -53,6 +54,8 @@ mod tests {
         assert_eq!(merge(&[1,], &vec![-1, 10]), vec![-1, 1, 10]);
         assert_eq!(merge(&["a",], &vec![]), vec!["a"]);
         assert_eq!(merge(&["a", "c"], &vec!["b"]), vec!["a", "b", "c"]);
+        assert_eq!(merge(&[], &vec!["a", "b", "c"]), vec!["a", "b", "c"]);
+        assert_eq!(merge(&[5,6,7,8], &vec![]), vec![5,6,7,8]);
     }
     #[test]
     fn it_mergesorts() {
